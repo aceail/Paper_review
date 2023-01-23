@@ -56,3 +56,9 @@ $Maximum Likelihood p_{\theta}(x) =  \int\limits\mathrm{p_{\theta}(x)}\mathrm{p_
 - Density를 직접적으로 구한것이 아니기 때문에 Pixel RNN/CNN과 같이 직접적으로 Density를 구한 모델보다 성능이 떨어진다. 
 
 ## 코드
+
+
+ref
+- https://huidea.tistory.com/296
+- https://wikidocs.net/152474
+- https://process-mining.tistory.com/161
