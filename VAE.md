@@ -7,6 +7,9 @@ Generative model의 한 종류이다. 입력 데이터의 feature을 추출하�
 
 
 
+
+
+
 ## 구조
 ![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fb30Uzl%2FbtrxY4wKngj%2FSucVwitDrRtQvi1xTHdrR0%2Fimg.png)
 
@@ -26,6 +29,30 @@ Latent space는 어떤 숨겨진 vector들을 나타내는 말이다. 현 latent
 #### Decoder
 encoder는 축소하고 말하면 decoder는 확대라고 말할 수 있다. decoder는 latent space를 input으로 변환하는 역할임. latent vector z가 주어졌을 때 x의 분포 즉, $p(z|x)$를 approximate하는 것을 목적으로 함.
 
+![image](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F3CW87%2Fbtq1BxbtMnj%2FFGaJRtOtCAKanYDEOBWj0k%2Fimg.png)
+
 ## 증명
+
+모델의 parameter $\theta$가 주어졌을 때 우리가 원하는 정답인 x가 나올 확률 $p_{\theta}(x)$가 높을 수록 좋은 모델이라고 할 수 있음.\
+즉, $p_{\theta}(x)$를 최대화 하는 방향으로 VAE의 parameter $\theta$를 학습시키게 됨.\
+\
+latent variable z의 확률 분포 : $p_{\theta}(x)$\
+x의 확률분포: $p_{\theta}(x|Z^{(i)})$
+
+네트워크 출력값이 있을 때 정답2 x가 나올 확률이 높길 바람 즉, x의 likelihood를 최대화하는 확률분포를 찾아야한다.
+
+$Maximum Likelihood p_{\theta}(x) =  \int\limits\mathrm{p_{\theta}(x)}\mathrm{p_{\theta}(x|Z^{(i)})}\mathrm{dz}$
+
+![image](https://wikidocs.net/images/page/146378/222.png)
+
+
+**normal(=Gaussian)  distribution, 정규분포 가정하면 -> MSE** \
+**bernoulli distribution, 이산확률 분포 -> Cross entropy**
+- decoder를 통화해서 나온 $p_i$가 베르누이 분포를 띄고 있기 때문에 Cross entropy 적용
 ## 장단점
+#### 장점
+- 확률 모델을 기반으로 했기 때문에, 잠재 코드를 더 유연하게 계산할 수 있음.
+#### 단점
+- Density를 직접적으로 구한것이 아니기 때문에 Pixel RNN/CNN과 같이 직접적으로 Density를 구한 모델보다 성능이 떨어진다. 
+
 ## 코드
